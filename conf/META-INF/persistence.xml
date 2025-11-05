@@ -9,12 +9,17 @@
     -->
     <persistence-unit name="defaultPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <non-jta-data-source>DefaultDS</non-jta-data-source>        
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <!-- Register the Book entity class -->
+        <class>models.Book</class>    
         <properties>
             <!-- H2 SQL dialect for query generation -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>            
             <!-- Auto-generate/update database schema from @Entity classes -->
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- Show SQL statements in the console -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 
