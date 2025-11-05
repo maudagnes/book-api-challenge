@@ -1,9 +1,23 @@
-logs
-target
-/.bsp
-/.idea
-/.idea_modules
-/.classpath
-/.project
-/.settings
-/RUNNING_PID
+# SBT
+target/
+project/target/
+project/project/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.bsp/
+
+# Metals
+.metals/
+.bloop/
+metals.sbt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
