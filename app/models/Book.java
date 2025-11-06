@@ -1,6 +1,11 @@
 package models;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * Book entity representing a book in the database.
@@ -31,7 +36,7 @@ public class Book {
     public Book() {
     }
 
-    // Getters et Setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
