@@ -1,84 +1,57 @@
 package models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-/**
- * Book entity representing a book in the database.
- */
-@Entity
-@Table(name = "books")
 public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
     private String isbn;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column
-    private String subtitle;  // Optional
-
-    @Column(nullable = false)
+    private String subtitle;
     private String copyrightYear;
-
-    @Column(nullable = false)
     private String status;
 
     public Book() {
     }
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Book(String isbn, String title, String subtitle, String copyrightYear, String status) {
+        this.isbn = isbn;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.copyrightYear = copyrightYear;
+        this.status = status;
     }
 
     public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getSubtitle() {
         return subtitle;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
     public String getCopyrightYear() {
         return copyrightYear;
     }
 
-    public void setCopyrightYear(String copyrightYear) {
-        this.copyrightYear = copyrightYear;
-    }
-
     public String getStatus() {
         return status;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public void setCopyrightYear(String copyrightYear) {
+        this.copyrightYear = copyrightYear;
     }
 
     public void setStatus(String status) {

@@ -3,6 +3,7 @@ package services;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import models.Book;
+import models.BookListResponse;
 import repositories.BookRepository;
 import java.util.List;
 import play.libs.Json;
@@ -18,8 +19,9 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> fetchAllBooks() {
-        return bookRepository.fetchAllBooks();
+    public BookListResponse fetchAllBooks() {
+        List<Book> books = bookRepository.fetchAllBooks();
+        return new BookListResponse(books);
     }
 
     public Book createBook(Book book) {

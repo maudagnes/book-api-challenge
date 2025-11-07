@@ -1,5 +1,6 @@
 package repositories;
 
+import dto.BookDTO;
 import models.Book;
 import play.db.jpa.JPAApi;
 
@@ -22,8 +23,20 @@ public class BookRepository {
      */
     public List<Book> fetchAllBooks() {
         return jpaApi.em("default")
-            .createQuery("SELECT b FROM Book b", Book.class)
-            .getResultList();
+            .createQuery("SELECT b FROM BookDTO b", BookDTO.class)
+            .getResultList()
+            .stream()
+            .map(dto -> {
+                Book book = new Book(
+                    dto.getIsbn(),
+                    dto.getTitle(),
+                    dto.getSubtitle(),
+                    dto.getCopyrightYear(),
+                    dto.getStatus()
+                );
+                return book;
+            })
+            .toList();
     }
 
      /**
@@ -31,8 +44,23 @@ public class BookRepository {
      */
     public Book createBook(Book book) {
         return jpaApi.withTransaction("default", em -> {
-            em.persist(book);
-            return book;
+            BookDTO dto = new BookDTO();
+            dto.setIsbn(book.getIsbn());
+            dto.setTitle(book.getTitle());
+            dto.setSubtitle(book.getSubtitle());
+            dto.setCopyrightYear(book.getCopyrightYear());
+            dto.setStatus(book.getStatus());
+            
+            em.persist(dto);
+            em.flush();
+            
+            return new Book(
+                dto.getIsbn(),
+                dto.getTitle(),
+                dto.getSubtitle(),
+                dto.getCopyrightYear(),
+                dto.getStatus()
+            );
         });
     }
 }
